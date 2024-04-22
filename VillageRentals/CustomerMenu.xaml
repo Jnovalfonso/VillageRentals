@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VillageRentals.CustomerMenu"
+             Title="CustomerMenu">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Button x:Name="MainButton" Text="Add Customer" Background="#28a745" Margin="180, 30" Clicked="OnAddCustomerClicked"/>
+            <CollectionView x:Name="customerCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#007bff"
+                               BackgroundColor="Transparent"
+                               CornerRadius="5"
+                               Padding="15"
+                               Margin="20">
+                            <Grid ColumnDefinitions=".40*, .35*, .20*" RowDefinitions="Auto, Auto" BackgroundColor="Transparent">
+                                <Label Text="{Binding CustomerId}"
+                                       FontSize="Large"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       FontAttributes="Bold"
+                                       Margin="20, 0"/>
+
+                                <Label Grid.Column="1" Grid.Row="0" FontSize="20" FontAttributes="Bold">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="FirstName" />
+                                            <Binding Path="LastName" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+
+                                <Label Text="{Binding ContactPhone}"
+                                       Grid.Column="0"
+                                       Grid.Row="1"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+
+                                <Label Text="{Binding IsBanned, StringFormat='Is customer banned: {0}'}"
+                                       Grid.Column="1"
+                                       Grid.Row="1"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Email}"
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                                <Button 
+                                    Grid.Column="2"
+                                    Grid.Row="1"
+                                    Text="Ban Customer" 
+                                    Background="Red" 
+                                    Margin="20, 10"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <VerticalStackLayout x:Name="addCustomerPage" IsVisible="false">
+                <Label Text="Add Customer" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20" />
+
+                <StackLayout>
+                    <Entry Placeholder="First Name" x:Name="firstNameEntry" Margin="250, 10"/>
+                    <Entry Placeholder="Last Name" x:Name="lastNameEntry" Margin="250, 10"/>
+                    <Entry Placeholder="Contact Phone" x:Name="contactPhoneEntry" Margin="250, 10"/>
+                    <Entry Placeholder="Email" x:Name="emailEntry" Margin="250, 10"/>
+                </StackLayout>
+
+
+                <Button Text="Submit" BackgroundColor="#007bff" Clicked="OnSubmitClicked" HorizontalOptions="FillAndExpand" Margin="250, 50" />
+            </VerticalStackLayout>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
