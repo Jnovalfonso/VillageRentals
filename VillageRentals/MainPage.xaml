@@ -9,11 +9,11 @@
             <Label Text="Village Rentals Main Menu" FontSize="30" HorizontalOptions="Center" FontAttributes="Bold"/>
             <Label Text="'Equip, Empower, Excel: Your Rental Solution Village Rentals!'" FontSize="14" HorizontalOptions="Center" Margin="0,5,0,20" />
 
-            <Button Text="Manage inventory"  Margin="0,0,0,10" BackgroundColor="#007bff" TextColor="White"/>
+            <Button Text="Manage inventory"  Margin="0,0,0,10" BackgroundColor="#007bff" TextColor="White" Clicked="OnInventoryClicked"/>
 
             <Button Text="Manage Customers"  Margin="0,0,0,10" BackgroundColor="#28a745" TextColor="White" Clicked="OnCustomerClicked"/>
 
-            <Button Text="Manage Rentals"  Margin="0,0,0,10" BackgroundColor="#ffc107" TextColor="Black"/>
+            <Button Text="Manage Rentals"  Margin="0,0,0,10" BackgroundColor="#ffc107" TextColor="Black" Clicked="OnRentalClicked"/>
         </VerticalStackLayout>
     </Frame>
 

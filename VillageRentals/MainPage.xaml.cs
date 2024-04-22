@@ -9,7 +9,7 @@
 
         private void OnInventoryClicked (object sender, EventArgs e)
         {
-
+            Shell.Current.GoToAsync(nameof(InventoryMenu));
         }
 
         private void OnCustomerClicked(object sender, EventArgs e)
@@ -19,7 +19,7 @@
 
         private void OnRentalClicked(object sender, EventArgs e)
         {
-
+            Shell.Current.GoToAsync(nameof(RentalMenu));
         }
 
     }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VillageRentals.InventoryMenu"
+             Title="InventoryMenu">
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView x:Name="equipmentCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#007bff"
+                           BackgroundColor="Transparent"
+                           CornerRadius="5"
+                           Padding="15"
+                           Margin="20">
+                            <Grid ColumnDefinitions=".20*, .45*, .20*" RowDefinitions="Auto, Auto, Auto" BackgroundColor="Transparent">
+                                <Label Text="{Binding EquipmentId}"
+                                   FontSize="Large"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   FontAttributes="Bold"/>
+
+                                <Label Text="{Binding Name}"
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+
+                                <Label Text="{Binding CategoryId, StringFormat='Category ID: {0}'}"
+                                   Grid.Column="0"
+                                   Grid.Row="2"
+                                   FontSize="Medium"
+                                   VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Description}"
+                                   Grid.Column="1"
+                                   Grid.Row="0"
+                                   FontSize="Medium"
+                                   VerticalOptions="Center"/>
+
+                                <Label Text="{Binding DailyRentalCost, StringFormat='Daily Cost: ${0} CAD.'}"
+                                       Grid.Column="1"
+                                       Grid.Row="2"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Quantity, StringFormat='Available: {0}'}"
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                                <Label Text="{Binding DamagedQuantity, StringFormat='Damaged: {0}'}"
+                                       Grid.Column="2"
+                                       Grid.Row="1" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+
+                                <HorizontalStackLayout Grid.Column="2" Grid.Row="2" Margin="0, 10">
+                                    <Button 
+                                        x:Name="RemoveButton"
+                                        Text="Remove" 
+                                        Background="#ffc107"
+                                        Margin="0, 0, 10, 0"
+                                        Clicked="OnRemoveButtonClicked"/>
+                                    <Button 
+                                         x:Name="AddButton"
+                                         Text="Add" 
+                                         Background="#007bff" 
+                                         Clicked="OnAddButtonClicked" />
+                                </HorizontalStackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <VerticalStackLayout x:Name="addEquipmentPage" IsVisible="false">
+                <Label Text="Add Equipment" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20" />
+
+                <Entry Placeholder="Quantity to Add" x:Name="addQuantityEntry" Margin="250, 10"/>
+
+                <Button Text="Add" BackgroundColor="#007bff" Clicked="OnSubmitClicked" HorizontalOptions="Center" Margin="250, 50" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="removeEquipmentPage" IsVisible="False" VerticalOptions="CenterAndExpand">
+                <Label Text="Remove Equipment" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20" />
+
+                <Entry Placeholder="Quantity to Remove" x:Name="removeQuantityEntry" HorizontalOptions="CenterAndExpand" Margin="0, 10"/>
+
+                <Picker x:Name="picker"
+                        Title="Select Removal Action"
+                        SelectedIndex="1"
+                        HorizontalOptions="CenterAndExpand">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Send To Damaged Equipment</x:String>
+                            <x:String>Remove from Inventory</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Button Text="Remove" BackgroundColor="#007bff" Clicked="OnRemoveClicked" HorizontalOptions="Center" Margin="0, 20" />
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
